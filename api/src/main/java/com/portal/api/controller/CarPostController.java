@@ -1,6 +1,7 @@
 package com.portal.api.controller;
 
 import com.portal.api.dto.CarPostDTO;
+import com.portal.api.message.KafkaProducerMessage;
 import com.portal.api.service.CarPostStoreService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -20,6 +21,15 @@ public class CarPostController {
 
     @Autowired
     private CarPostStoreService carPostStoreService;
+
+    @Autowired
+    private KafkaProducerMessage kafkaProducerMessage;
+
+    @PostMapping("/post")
+    public ResponseEntity postCarForSale(@RequestBody CarPostDTO carPostDTO) {
+        kafkaProducerMessage.sendMessage(carPostDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @GetMapping("/posts")
     public ResponseEntity<List<CarPostDTO>> getCarSales(){
