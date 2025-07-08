@@ -23,7 +23,7 @@ public class CarPostDTO {
     private String brand;
 
     @NotBlank(message = "cannot be blank")
-    private String price;
+    private Double price;
 
     @NotBlank(message = "cannot be blank")
     private String description;

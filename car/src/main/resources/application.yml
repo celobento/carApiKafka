@@ -15,6 +15,6 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
       hibernate.format_sql: true
-      hibernate.ddl-auto: none
+      hibernate.hbm2ddl.auto: update
   kafka:
     bootstrap-servers: ${KAFKA-SERVER}
